@@ -1,0 +1,40 @@
+spring:
+  datasource:
+    druid:
+      driver-class-name: com.mysql.jdbc.Driver
+      url: jdbc:mysql://192.168.12.216:3306/test_bill?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true
+      username: root
+      password:
+      initial-size: 2
+      max-active: 5
+      min-idle: 1
+      max-wait: 60000
+      pool-prepared-statements: false # mysql 下关闭
+      max-pool-prepared-statement-per-connection-size: -1 # > 0 的情况下回开启pool-prepared-statements=true
+      validation-query: select 'x' #为null时，test-while-idle test-on-return test-on-borrow不会生效
+      test-on-borrow: false
+      test-on-return: false
+      test-while-idle: true
+      time-between-eviction-runs-millis: 60000 #配置检查需要关闭的链接的时间间隔，默认是1分钟，可以使用默认值
+      remove-abandoned: true
+      log-abandoned: true
+      min-evictable-idle-time-millis: 300000 #池中的连接保持空闲而不被驱逐的最小时间
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.pendanaan.entity
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: false
+    lazy-loading-enabled: false
+    use-generated-keys: true
+    auto-mapping-behavior: full
+    default-statement-timeout: 20000
+
+
+
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql

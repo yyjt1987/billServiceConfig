@@ -1,0 +1,17 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://127.0.0.1:8765/eureka/
+
+spring:
+#  application:
+#    name: bill-service
+  profiles:
+    include: orm
+
+server:
+  port: 8081
+
+logging:
+  config: classpath:log/logback-spring.xml
+  path: ${user.home}/logs
